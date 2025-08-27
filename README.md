@@ -2,12 +2,15 @@
 Как известно, встроенное окно для ввода комбинации клавиш переключения раскладки не дает вводить такие привычные комбинации как **Alt-Shift** и **Ctrl-Shift**.
 
 Для настройки этих комбинаций переключения раскладки, можно воспользоваться командами:
+
 ```bash
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Alt>Shift_L']"
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Shift>Alt_L']"
 ```
 # Добавляем индикацию раскладки на самой клавиатуре индикатором Scroll Lock
-`gsettings set org.gnome.desktop.input-sources xkb-options "['grp_led:scroll', 'grp:alt_shift_toggle']"`
+```bash
+gsettings set org.gnome.desktop.input-sources xkb-options "['grp_led:scroll', 'grp:alt_shift_toggle']"
+```
 
 Кстати, это убирает индикацию переключения раскладки на экране.
 Если ходите вернуть как было – сбросьте этот параметр:
@@ -17,23 +20,30 @@ gsettings get org.gnome.desktop.input-sources xkb-options
 ```
 # Настройка количества рабочих столов
 Открываем **Настройки/Многозадачность** переключаем на **Фиксированное количество рабочих столов**:
+
 ![Настройки/Многозадачность](Многозадачность.png)
 
 Указываем **Количество рабочих столов**.
 
 # Настройка быстрых клавиш для переключения между рабочими столами
 Открываем **Настройки/Клавиатура/Комбинации клавиш**, выбираем Просмотр и изменение комбинаций клавиш:
+
 ![Настройки/Клавиатура/Комбинации клавиш](Клавиатура.png)
 
 Далее, идем в **Перемещение/Переключиться на рабочее место 1** и назначаем нужное сочетание клавиш:
+
 ![Перемещение/Переключиться на рабочее место 1](Перемещение.png)
 
 В данном диалоге можно назначить сочетания только для четырех рабочих столов, если нужно больше, то это можно сделать через консоль:
-`gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-10 "['<Alt>0']"`
+```bash
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-10 "['<Alt>0']"
+```
 
 # Как убрать задержку после ввода неправильного пароля в Ubuntu?
 В файле **/etc/pam.d/common-auth** нужно добавить опцию **nodelay**:
-`auth    [success=1 default=ignore]      pam_unix.so nullok nodelay`
+```bash
+auth    [success=1 default=ignore]      pam_unix.so nullok nodelay
+```
 
 Это уберет задержку между неправильными паролями как в прямом входе пользователя, через **sudo**, так и через **SSH** подключение.
 
